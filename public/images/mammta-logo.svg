@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <!-- Background -->
+  <rect x="0" y="0" width="1000" height="800" fill="#55a0c7" />
+  
+  <!-- Red Banner -->
+  <rect x="0" y="620" width="1000" height="260" fill="#f44336" />
+  
+  <!-- Wave Shape -->
+  <path d="M0,880 Q250,780 500,830 T1000,780 V1000 H0 Z" fill="#55a0c7" />
+  
+  <!-- Chicken Illustration -->
+  <g transform="translate(500, 350) scale(0.8)">
+    <!-- Chicken Body (White) -->
+    <ellipse cx="0" cy="0" rx="200" ry="220" fill="#ffffff" />
+    
+    <!-- Red Comb -->
+    <path d="M-20,-180 C-10,-220 10,-240 30,-220 C50,-240 70,-200 90,-220 C110,-180 120,-220 140,-180 C100,-160 70,-140 20,-160 Z" fill="#e53935" />
+    
+    <!-- Wattle -->
+    <path d="M0,20 C-20,60 -30,120 -20,180 C-10,160 10,160 20,180 C30,120 20,60 0,20 Z" fill="#e53935" />
+    
+    <!-- Beak -->
+    <path d="M-60,0 C-40,-20 -20,-20 0,-10 C20,-20 40,-20 60,0 C40,30 20,40 0,30 C-20,40 -40,30 -60,0 Z" fill="#ffc107" />
+    
+    <!-- Sunglasses -->
+    <rect x="-100" y="-40" width="200" height="60" rx="20" ry="20" fill="#424242" opacity="0.7" />
+    <circle cx="-50" cy="-10" r="10" fill="#ffffff" opacity="0.3" />
+    <circle cx="50" cy="-10" r="10" fill="#ffffff" opacity="0.3" />
+    
+    <!-- Thumb -->
+    <path d="M280,100 C300,80 330,90 340,110 C350,130 340,160 320,170 C300,180 270,160 280,100 Z" fill="#ffffff" />
+  </g>
+  
+  <!-- Mammta Text -->
+  <g transform="translate(500, 730)">
+    <text x="0" y="0" font-family="Georgia, serif" font-size="120" font-weight="bold" text-anchor="middle" fill="#ffffff">Mammtâ</text>
+    <text x="0" y="60" font-family="Arial, sans-serif" font-size="30" text-anchor="middle" fill="#ffeb3b">Premium Ingredients, Superior Taste</text>
+  </g>
+  
+  <!-- Background Chicken Leg Pattern -->
+  <g opacity="0.1" fill="#ffffff">
+    <!-- Pattern Repeats -->
+    <path d="M100,100 C120,80 150,90 160,120 C170,150 150,180 120,170 C90,160 80,120 100,100 Z" />
+    <path d="M300,200 C320,180 350,190 360,220 C370,250 350,280 320,270 C290,260 280,220 300,200 Z" />
+    <path d="M700,100 C720,80 750,90 760,120 C770,150 750,180 720,170 C690,160 680,120 700,100 Z" />
+    <path d="M800,300 C820,280 850,290 860,320 C870,350 850,380 820,370 C790,360 780,320 800,300 Z" />
+    <path d="M200,500 C220,480 250,490 260,520 C270,550 250,580 220,570 C190,560 180,520 200,500 Z" />
+    <path d="M600,400 C620,380 650,390 660,420 C670,450 650,480 620,470 C590,460 580,420 600,400 Z" />
+    <path d="M900,500 C920,480 950,490 960,520 C970,550 950,580 920,570 C890,560 880,520 900,500 Z" />
+    <path d="M100,300 C120,280 150,290 160,320 C170,350 150,380 120,370 C90,360 80,320 100,300 Z" />
+    <path d="M400,100 C420,80 450,90 460,120 C470,150 450,180 420,170 C390,160 380,120 400,100 Z" />
+    <path d="M500,300 C520,280 550,290 560,320 C570,350 550,380 520,370 C490,360 480,320 500,300 Z" />
+  </g>
+</svg> 
