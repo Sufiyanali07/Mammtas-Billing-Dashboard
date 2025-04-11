@@ -696,13 +696,20 @@ const MockApiService = {
         throw new Error("No phone number provided for sending WhatsApp");
       }
 
+      // Format phone number properly
       let formattedPhone = bill.phone.replace(/\s+/g, ""); // Remove all whitespace
-      // eslint-disable-next-line no-useless-escape
       formattedPhone = formattedPhone.replace(/[^\d\+]/g, ""); // Remove non-numeric except +
 
       // If number doesn't start with +, assume it's a local number and add +91 (India)
       if (!formattedPhone.startsWith("+")) {
         formattedPhone = `+91${formattedPhone}`;
+      }
+
+      // Validate phone number format
+      if (!/^\+91[6-9]\d{9}$/.test(formattedPhone)) {
+        throw new Error(
+          "Invalid Indian phone number format. Must be +91 followed by 10 digits starting with 6-9"
+        );
       }
 
       // Create a more modern and interactive bill message
@@ -737,7 +744,7 @@ ${bill.itemsDetail
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 💵 *PAYMENT DETAILS*
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   • Subtotal: ${formatCurrency(bill.total - bill.total * 0.05)}
+   • Subtotal: ${formatCurrency(bill.total * 0.95)}
    • GST (5%): ${formatCurrency(bill.total * 0.05)}
    • Total Amount: ${formatCurrency(bill.total)}
    • Status: ${bill.status === "paid" ? "✅ Paid" : "⏳ Pending"}
@@ -764,6 +771,13 @@ Thank you for choosing Mammtas Food! 🍗
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 `;
 
+      // In a production environment, you would use the WhatsApp Business API here
+      // For now, we'll simulate the API call
+      console.log(`[MOCK-API] Sending WhatsApp message to ${formattedPhone}`);
+
+      // Simulate API delay
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // Save the message to localStorage for persistence
       const messages = JSON.parse(
         localStorage.getItem("whatsappMessages") || "[]"
@@ -773,41 +787,19 @@ Thank you for choosing Mammtas Food! 🍗
         message: formattedMessage,
         timestamp: new Date().toISOString(),
         status: "sent",
+        billId: billId,
       });
       localStorage.setItem("whatsappMessages", JSON.stringify(messages));
 
-      // In a browser environment, we can open a new window with the WhatsApp URL
-      if (typeof window !== "undefined") {
-        window.open(
-          `https://wa.me/${formattedPhone}?text=${encodeURIComponent(
-            formattedMessage
-          )}`,
-          "_blank"
-        );
-
-        // Return a success response
-        return {
-          success: true,
-          method: "whatsapp",
-          message: "WhatsApp notification opened in new window",
-          timestamp: new Date().toISOString(),
-          recipient: bill.phone,
-          billId: billId,
-        };
-      } else {
-        // For non-browser environments, return the URL
-        return {
-          success: true,
-          method: "whatsapp",
-          message: "WhatsApp URL generated",
-          whatsappUrl: `https://wa.me/${formattedPhone}?text=${encodeURIComponent(
-            formattedMessage
-          )}`,
-          timestamp: new Date().toISOString(),
-          recipient: bill.phone,
-          billId: billId,
-        };
-      }
+      // Return success response
+      return {
+        success: true,
+        method: "whatsapp",
+        message: "WhatsApp message sent successfully",
+        timestamp: new Date().toISOString(),
+        recipient: formattedPhone,
+        billId: billId,
+      };
     } catch (error) {
       console.error(`[MOCK-API] WhatsApp notification error:`, error);
       throw new Error(`Failed to send WhatsApp notification: ${error.message}`);

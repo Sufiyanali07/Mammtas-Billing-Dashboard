@@ -28,7 +28,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-gradient-to-r from-blue-800 to-blue-600 shadow-md">
+    <nav className="bg-gradient-to-r from-blue-800 to-blue-600 shadow-md dark:from-gray-900 dark:to-gray-800 dark:border-b dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex">
@@ -40,28 +40,28 @@ const Navbar = () => {
                 <img
                   src="/images/mammta-logo.svg"
                   alt="Mammta Logo"
-                  className="h-12 w-auto mr-2 rounded-full cursor-pointer border-2 border-transparent hover:border-white transition-all duration-200"
+                  className="h-12 w-auto mr-2 rounded-full cursor-pointer border-2 border-transparent hover:border-white dark:hover:border-gray-300 transition-all duration-200"
                   onClick={() => setSettingsDropdownOpen(!settingsDropdownOpen)}
                 />
                 {/* Settings indicator dot */}
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border border-white"></div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border border-white dark:border-gray-300"></div>
               </div>
 
               {/* Settings Dropdown */}
               {settingsDropdownOpen && (
-                <div className="absolute top-full left-0 mt-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+                <div className="absolute top-full left-0 mt-1 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 dark:ring-gray-700 z-50">
                   <div className="py-1" role="menu" aria-orientation="vertical">
-                    <div className="px-4 py-2 text-xs text-gray-500 border-b">
+                    <div className="px-4 py-2 text-xs text-gray-500 dark:text-gray-400 border-b dark:border-gray-700">
                       Admin Settings
                     </div>
                     <Link
                       to="/sms-settings"
-                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                       role="menuitem"
                       onClick={() => setSettingsDropdownOpen(false)}
                     >
                       <svg
-                        className="h-4 w-4 mr-2 text-gray-500"
+                        className="h-4 w-4 mr-2 text-gray-500 dark:text-gray-400"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -83,12 +83,12 @@ const Navbar = () => {
                     </Link>
                     <Link
                       to="/sms-test"
-                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                       role="menuitem"
                       onClick={() => setSettingsDropdownOpen(false)}
                     >
                       <svg
-                        className="h-4 w-4 mr-2 text-gray-500"
+                        className="h-4 w-4 mr-2 text-gray-500 dark:text-gray-400"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -104,12 +104,12 @@ const Navbar = () => {
                     </Link>
                     <Link
                       to="/direct-sms"
-                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      className="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                       role="menuitem"
                       onClick={() => setSettingsDropdownOpen(false)}
                     >
                       <svg
-                        className="h-4 w-4 mr-2 text-gray-500"
+                        className="h-4 w-4 mr-2 text-gray-500 dark:text-gray-400"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -127,7 +127,7 @@ const Navbar = () => {
                 </div>
               )}
 
-              <span className="text-xl font-bold text-white font-heading tracking-wide">
+              <span className="text-xl font-bold text-white dark:text-gray-100 font-heading tracking-wide">
                 Mammtas Food
               </span>
             </div>
@@ -136,8 +136,8 @@ const Navbar = () => {
                 to="/"
                 className={`${
                   isActive("/")
-                    ? "border-white text-white"
-                    : "border-transparent text-blue-100 hover:border-blue-300 hover:text-white"
+                    ? "border-white text-white dark:border-gray-300 dark:text-gray-300"
+                    : "border-transparent text-blue-100 hover:border-blue-300 hover:text-white dark:text-gray-300 dark:hover:border-gray-400 dark:hover:text-gray-100"
                 } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors font-heading`}
               >
                 Dashboard
@@ -146,8 +146,8 @@ const Navbar = () => {
                 to="/billing-form"
                 className={`${
                   isActive("/billing-form") || isActive("/create-bill")
-                    ? "border-white text-white"
-                    : "border-transparent text-blue-100 hover:border-blue-300 hover:text-white"
+                    ? "border-white text-white dark:border-gray-300 dark:text-gray-300"
+                    : "border-transparent text-blue-100 hover:border-blue-300 hover:text-white dark:text-gray-300 dark:hover:border-gray-400 dark:hover:text-gray-100"
                 } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors font-heading`}
               >
                 New Order
@@ -156,8 +156,8 @@ const Navbar = () => {
                 to="/billing-history"
                 className={`${
                   isActive("/billing-history")
-                    ? "border-white text-white"
-                    : "border-transparent text-blue-100 hover:border-blue-300 hover:text-white"
+                    ? "border-white text-white dark:border-gray-300 dark:text-gray-300"
+                    : "border-transparent text-blue-100 hover:border-blue-300 hover:text-white dark:text-gray-300 dark:hover:border-gray-400 dark:hover:text-gray-100"
                 } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors font-heading`}
               >
                 Order History
@@ -166,8 +166,8 @@ const Navbar = () => {
                 to="/receipts"
                 className={`${
                   isActive("/receipts")
-                    ? "border-white text-white"
-                    : "border-transparent text-blue-100 hover:border-blue-300 hover:text-white"
+                    ? "border-white text-white dark:border-gray-300 dark:text-gray-300"
+                    : "border-transparent text-blue-100 hover:border-blue-300 hover:text-white dark:text-gray-300 dark:hover:border-gray-400 dark:hover:text-gray-100"
                 } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors font-heading`}
               >
                 <svg
@@ -192,7 +192,7 @@ const Navbar = () => {
           <div className="-mr-2 flex items-center sm:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-blue-100 hover:text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              className="inline-flex items-center justify-center p-2 rounded-md text-blue-100 hover:text-white hover:bg-blue-700 dark:text-gray-300 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
             >
               <span className="sr-only">Open main menu</span>
               {!mobileMenuOpen ? (
@@ -234,7 +234,8 @@ const Navbar = () => {
           <div className="flex items-center">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="p-2 rounded-full text-white hover:bg-blue-700 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white dark:focus:ring-gray-300"
+              aria-label="Toggle dark mode"
             >
               {isDarkMode ? (
                 <svg
@@ -279,8 +280,8 @@ const Navbar = () => {
             to="/"
             className={`${
               isActive("/")
-                ? "bg-blue-700 border-white text-white"
-                : "border-transparent text-blue-100 hover:bg-blue-700 hover:border-blue-300 hover:text-white"
+                ? "bg-blue-700 border-white text-white dark:border-gray-300 dark:text-gray-300"
+                : "border-transparent text-blue-100 hover:bg-blue-700 hover:border-blue-300 hover:text-white dark:text-gray-300 dark:hover:border-gray-400 dark:hover:text-gray-100"
             } block pl-3 pr-4 py-2 border-l-4 text-base font-medium font-heading`}
             onClick={() => setMobileMenuOpen(false)}
           >
@@ -290,8 +291,8 @@ const Navbar = () => {
             to="/billing-form"
             className={`${
               isActive("/billing-form") || isActive("/create-bill")
-                ? "bg-blue-700 border-white text-white"
-                : "border-transparent text-blue-100 hover:bg-blue-700 hover:border-blue-300 hover:text-white"
+                ? "bg-blue-700 border-white text-white dark:border-gray-300 dark:text-gray-300"
+                : "border-transparent text-blue-100 hover:bg-blue-700 hover:border-blue-300 hover:text-white dark:text-gray-300 dark:hover:border-gray-400 dark:hover:text-gray-100"
             } block pl-3 pr-4 py-2 border-l-4 text-base font-medium font-heading`}
             onClick={() => setMobileMenuOpen(false)}
           >
@@ -301,8 +302,8 @@ const Navbar = () => {
             to="/billing-history"
             className={`${
               isActive("/billing-history")
-                ? "bg-blue-700 border-white text-white"
-                : "border-transparent text-blue-100 hover:bg-blue-700 hover:border-blue-300 hover:text-white"
+                ? "bg-blue-700 border-white text-white dark:border-gray-300 dark:text-gray-300"
+                : "border-transparent text-blue-100 hover:bg-blue-700 hover:border-blue-300 hover:text-white dark:text-gray-300 dark:hover:border-gray-400 dark:hover:text-gray-100"
             } block pl-3 pr-4 py-2 border-l-4 text-base font-medium font-heading`}
             onClick={() => setMobileMenuOpen(false)}
           >
@@ -312,8 +313,8 @@ const Navbar = () => {
             to="/receipts"
             className={`${
               isActive("/receipts")
-                ? "bg-blue-700 border-white text-white"
-                : "border-transparent text-blue-100 hover:bg-blue-700 hover:border-blue-300 hover:text-white"
+                ? "bg-blue-700 border-white text-white dark:border-gray-300 dark:text-gray-300"
+                : "border-transparent text-blue-100 hover:bg-blue-700 hover:border-blue-300 hover:text-white dark:text-gray-300 dark:hover:border-gray-400 dark:hover:text-gray-100"
             } block pl-3 pr-4 py-2 border-l-4 text-base font-medium font-heading`}
             onClick={() => setMobileMenuOpen(false)}
           >
@@ -328,8 +329,8 @@ const Navbar = () => {
               to="/sms-settings"
               className={`${
                 isActive("/sms-settings")
-                  ? "bg-blue-700 border-white text-white"
-                  : "border-transparent text-blue-100 hover:bg-blue-700 hover:border-blue-300 hover:text-white"
+                  ? "bg-blue-700 border-white text-white dark:border-gray-300 dark:text-gray-300"
+                  : "border-transparent text-blue-100 hover:bg-blue-700 hover:border-blue-300 hover:text-white dark:text-gray-300 dark:hover:border-gray-400 dark:hover:text-gray-100"
               } block pl-3 pr-4 py-2 border-l-4 text-base font-medium font-heading`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -339,8 +340,8 @@ const Navbar = () => {
               to="/sms-test"
               className={`${
                 isActive("/sms-test")
-                  ? "bg-blue-700 border-white text-white"
-                  : "border-transparent text-blue-100 hover:bg-blue-700 hover:border-blue-300 hover:text-white"
+                  ? "bg-blue-700 border-white text-white dark:border-gray-300 dark:text-gray-300"
+                  : "border-transparent text-blue-100 hover:bg-blue-700 hover:border-blue-300 hover:text-white dark:text-gray-300 dark:hover:border-gray-400 dark:hover:text-gray-100"
               } block pl-3 pr-4 py-2 border-l-4 text-base font-medium font-heading`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -350,8 +351,8 @@ const Navbar = () => {
               to="/direct-sms"
               className={`${
                 isActive("/direct-sms")
-                  ? "bg-blue-700 border-white text-white"
-                  : "border-transparent text-blue-100 hover:bg-blue-700 hover:border-blue-300 hover:text-white"
+                  ? "bg-blue-700 border-white text-white dark:border-gray-300 dark:text-gray-300"
+                  : "border-transparent text-blue-100 hover:bg-blue-700 hover:border-blue-300 hover:text-white dark:text-gray-300 dark:hover:border-gray-400 dark:hover:text-gray-100"
               } block pl-3 pr-4 py-2 border-l-4 text-base font-medium font-heading`}
               onClick={() => setMobileMenuOpen(false)}
             >

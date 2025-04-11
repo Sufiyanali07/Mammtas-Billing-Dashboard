@@ -27,27 +27,32 @@ const DashboardCard = ({
 }) => {
   return (
     <div
-      className={`bg-white overflow-hidden shadow rounded-lg border-l-4 ${color} ${className}`}
+      className={`dashboard-card stats-card bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg border-l-4 ${color} dark:border-opacity-80 transition-all duration-300 hover:shadow-lg dark:hover:shadow-gray-700/50 ${className}`}
     >
       <div className="px-4 py-5 sm:p-6 flex justify-between items-center">
         <div>
-          <dt className="text-sm font-medium text-gray-500 truncate">
+          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
             {title}
           </dt>
-          <dd className="mt-1 text-3xl font-semibold text-gray-900">
+          <dd className="mt-1 text-3xl font-semibold text-gray-900 dark:text-gray-100">
             {isLoading ? (
-              <div className="animate-pulse h-8 w-16 bg-gray-200 rounded"></div>
+              <div className="loading-shimmer h-8 w-16 bg-gray-200 dark:bg-gray-700 rounded"></div>
             ) : (
               value
             )}
           </dd>
         </div>
-        <div className={`text-${color.replace("border-", "")} text-opacity-80`}>
+        <div
+          className={`text-${color.replace(
+            "border-",
+            ""
+          )} text-opacity-80 dark:text-opacity-90`}
+        >
           {icon}
         </div>
       </div>
-      <div className="bg-gray-50 px-4 py-4 sm:px-6">
-        <div className="text-sm">{footer}</div>
+      <div className="bg-gray-50 dark:bg-gray-700/50 px-4 py-4 sm:px-6">
+        <div className="text-sm text-gray-600 dark:text-gray-300">{footer}</div>
       </div>
     </div>
   );
@@ -193,48 +198,46 @@ const Dashboard = () => {
 
   return (
     <div className="py-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
-        <div className="flex items-center">
-          <div>
-            <h1
-              className="text-2xl sm:text-3xl font-bold text-blue-800 mb-1 sm:mb-0 font-heading"
-              style={{ letterSpacing: "-0.5px" }}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Hero Section */}
+        <div className="hero-section rounded-lg p-6 mb-8 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-900 shadow-lg transition-all duration-300">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+            <div>
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-1 transition-colors duration-300">
+                Mammta's Dashboard
+              </h1>
+              <p className="text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">
+                Welcome to your billing dashboard
+              </p>
+            </div>
+            <button
+              onClick={handleRefresh}
+              className="refresh-button mt-4 md:mt-0 px-4 py-2 bg-blue-600 dark:bg-blue-700 text-white rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 transition duration-300 flex items-center shadow-md hover:shadow-lg dark:shadow-gray-700/50"
             >
-              Mammtas Food
-            </h1>
-            <p className="text-sm text-gray-600">
-              Premium Frozen Chicken Products
-            </p>
+              <svg
+                className="h-4 w-4 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+              Refresh
+            </button>
           </div>
         </div>
-        <button
-          onClick={handleRefresh}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-150 flex items-center mt-4 sm:mt-0"
-        >
-          <svg
-            className="h-4 w-4 mr-2"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-            />
-          </svg>
-          Refresh
-        </button>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         {error && (
-          <div className="mb-6 bg-red-50 border-l-4 border-red-400 p-4 rounded shadow-sm">
+          <div className="error-message mb-6 bg-red-50 dark:bg-red-900/20 border-l-4 border-red-400 dark:border-red-500 p-4 rounded shadow-sm">
             <div className="flex">
               <div className="flex-shrink-0">
                 <svg
-                  className="h-5 w-5 text-red-400"
+                  className="h-5 w-5 text-red-400 dark:text-red-500"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -247,60 +250,13 @@ const Dashboard = () => {
                 </svg>
               </div>
               <div className="ml-3">
-                <p className="text-sm text-red-700">{error}</p>
-                <TestApiButton onTest={handleTestApi} />
+                <p className="text-sm text-red-700 dark:text-red-300">
+                  {error}
+                </p>
               </div>
             </div>
           </div>
         )}
-
-        {/* Hero Banner */}
-        <div className="mb-8 p-6 bg-gradient-to-r from-blue-700 to-blue-600 shadow rounded-lg text-white relative overflow-hidden hero-banner">
-          {/* Background pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <svg
-              className="h-full w-full"
-              viewBox="0 0 800 800"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <pattern
-                  id="grid"
-                  width="50"
-                  height="50"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <circle cx="25" cy="25" r="2" fill="white" />
-                </pattern>
-                <pattern
-                  id="dots"
-                  width="40"
-                  height="40"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <path d="M0 0h40v40H0z" fill="url(#grid)" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#dots)" />
-            </svg>
-          </div>
-          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between">
-            <div className="mb-4 md:mb-0">
-              <h2 className="text-xl font-bold text-white font-heading tracking-wide">
-                Welcome to Mammtas Food Dashboard
-              </h2>
-              <p className="text-sm text-blue-100">
-                Manage your frozen food inventory and billing
-              </p>
-            </div>
-            <Link
-              to="/billing-form"
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
-              Create New Bill
-            </Link>
-          </div>
-        </div>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -310,7 +266,7 @@ const Dashboard = () => {
             footer={
               <Link
                 to="/billing-history"
-                className="font-medium text-blue-600 hover:text-blue-700"
+                className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300"
               >
                 View all orders
               </Link>
@@ -332,7 +288,7 @@ const Dashboard = () => {
             }
             color="border-blue-500"
             isLoading={loading}
-            className="dashboard-card"
+            className="dashboard-card hover:scale-105 transition-transform duration-300"
           />
 
           <DashboardCard
@@ -360,7 +316,7 @@ const Dashboard = () => {
             }
             color="border-blue-500"
             isLoading={loading}
-            className="dashboard-card"
+            className="dashboard-card hover:scale-105 transition-transform duration-300"
           />
 
           <DashboardCard
@@ -388,7 +344,7 @@ const Dashboard = () => {
             }
             color="border-yellow-500"
             isLoading={loading}
-            className="dashboard-card"
+            className="dashboard-card hover:scale-105 transition-transform duration-300"
           />
 
           <DashboardCard
@@ -417,7 +373,7 @@ const Dashboard = () => {
             }
             color="border-green-500"
             isLoading={loading}
-            className="dashboard-card"
+            className="dashboard-card hover:scale-105 transition-transform duration-300"
           />
 
           <DashboardCard
@@ -426,7 +382,7 @@ const Dashboard = () => {
             footer={
               <Link
                 to="/billing-form"
-                className="font-medium text-blue-600 hover:text-blue-700"
+                className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300"
               >
                 Create new order
               </Link>
@@ -448,7 +404,7 @@ const Dashboard = () => {
             }
             color="border-yellow-500"
             isLoading={loading}
-            className="dashboard-card"
+            className="dashboard-card hover:scale-105 transition-transform duration-300"
           />
         </div>
 
@@ -635,16 +591,18 @@ const Dashboard = () => {
 
         {/* Quick Actions */}
         <div className="mt-8">
-          <h2 className="text-lg font-medium text-gray-900">Quick Actions</h2>
-          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4 transition-colors duration-300">
+            Quick Actions
+          </h2>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Link
               to="/billing-form"
-              className="block p-6 bg-white rounded-lg border border-gray-200 shadow-sm hover:bg-gray-50"
+              className="dashboard-card stats-card bg-white dark:bg-gray-800 rounded-lg p-6 hover:shadow-lg transition duration-300 hover:scale-105"
             >
               <div className="flex items-center">
-                <div className="flex-shrink-0 bg-indigo-100 rounded-full p-3">
+                <div className="flex-shrink-0">
                   <svg
-                    className="h-6 w-6 text-indigo-600"
+                    className="h-6 w-6 text-blue-600 dark:text-blue-400"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -659,10 +617,10 @@ const Dashboard = () => {
                   </svg>
                 </div>
                 <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 transition-colors duration-300">
                     Create New Bill
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">
+                  <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300">
                     Generate a new bill for a customer
                   </p>
                 </div>
@@ -671,12 +629,12 @@ const Dashboard = () => {
 
             <Link
               to="/billing-history"
-              className="block p-6 bg-white rounded-lg border border-gray-200 shadow-sm hover:bg-gray-50"
+              className="dashboard-card stats-card bg-white dark:bg-gray-800 rounded-lg p-6 hover:shadow-lg transition duration-300 hover:scale-105"
             >
               <div className="flex items-center">
-                <div className="flex-shrink-0 bg-green-100 rounded-full p-3">
+                <div className="flex-shrink-0">
                   <svg
-                    className="h-6 w-6 text-green-600"
+                    className="h-6 w-6 text-green-600 dark:text-green-400"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -691,10 +649,10 @@ const Dashboard = () => {
                   </svg>
                 </div>
                 <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 transition-colors duration-300">
                     View Billing History
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">
+                  <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300">
                     See all bills and payment status
                   </p>
                 </div>
@@ -724,12 +682,12 @@ const Dashboard = () => {
                   setLoading(false);
                 }
               }}
-              className="block p-6 bg-white rounded-lg border border-gray-200 shadow-sm hover:bg-gray-50"
+              className="dashboard-card stats-card bg-white dark:bg-gray-800 rounded-lg p-6 hover:shadow-lg transition duration-300 hover:scale-105"
             >
               <div className="flex items-center">
-                <div className="flex-shrink-0 bg-blue-100 rounded-full p-3">
+                <div className="flex-shrink-0">
                   <svg
-                    className="h-6 w-6 text-blue-600"
+                    className="h-6 w-6 text-blue-600 dark:text-blue-400"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -744,10 +702,10 @@ const Dashboard = () => {
                   </svg>
                 </div>
                 <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 transition-colors duration-300">
                     Create Sample Bill
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">
+                  <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300">
                     Generate a sample bill with chicken products
                   </p>
                 </div>
@@ -768,12 +726,12 @@ const Dashboard = () => {
                   setLoading(false);
                 }
               }}
-              className="block p-6 bg-white rounded-lg border border-gray-200 shadow-sm hover:bg-red-50"
+              className="dashboard-card stats-card bg-white dark:bg-gray-800 rounded-lg p-6 hover:shadow-lg transition duration-300 hover:scale-105"
             >
               <div className="flex items-center">
-                <div className="flex-shrink-0 bg-red-100 rounded-full p-3">
+                <div className="flex-shrink-0">
                   <svg
-                    className="h-6 w-6 text-red-600"
+                    className="h-6 w-6 text-red-600 dark:text-red-400"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -788,10 +746,10 @@ const Dashboard = () => {
                   </svg>
                 </div>
                 <div className="ml-4">
-                  <h3 className="text-lg font-medium text-gray-900">
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 transition-colors duration-300">
                     Clear All Bills
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">
+                  <p className="mt-1 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300">
                     Reset the dashboard and remove all bills
                   </p>
                 </div>
@@ -830,36 +788,38 @@ const Dashboard = () => {
         {/* Recent Bills */}
         <div className="mt-8">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-medium text-gray-900">Recent Bills</h2>
+            <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100 transition-colors duration-300">
+              Recent Bills
+            </h2>
             <Link
               to="/billing-history"
-              className="text-sm text-blue-600 hover:text-blue-800"
+              className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300"
             >
               View all bills
             </Link>
           </div>
-          <div className="bg-white shadow overflow-hidden sm:rounded-md">
-            <ul className="divide-y divide-gray-200">
+          <div className="dashboard-card stats-card bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg transition-all duration-300">
+            <ul className="divide-y divide-gray-200 dark:divide-gray-700">
               {recentBills.map((bill) => (
                 <li key={bill.id}>
                   <Link
                     to={`/billing-history/${bill.id}`}
-                    className="block hover:bg-gray-50"
+                    className="block hover:bg-gray-50 dark:hover:bg-gray-700/50 transition duration-150"
                   >
                     <div className="px-4 py-4 sm:px-6">
                       <div className="flex items-center justify-between">
-                        <p className="text-sm font-medium text-blue-600 truncate">
+                        <p className="text-sm font-medium text-blue-600 dark:text-blue-400 truncate transition-colors duration-300">
                           Bill #{bill.id}
                         </p>
                         <div className="ml-2 flex-shrink-0 flex">
                           <p
                             className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                               bill.status === "paid"
-                                ? "bg-green-100 text-green-800"
+                                ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400"
                                 : bill.status === "pending"
-                                ? "bg-yellow-100 text-yellow-800"
-                                : "bg-red-100 text-red-800"
-                            }`}
+                                ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400"
+                                : "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400"
+                            } transition-colors duration-300`}
                           >
                             {bill.status}
                           </p>
@@ -867,14 +827,14 @@ const Dashboard = () => {
                       </div>
                       <div className="mt-2 sm:flex sm:justify-between">
                         <div className="sm:flex">
-                          <p className="flex items-center text-sm text-gray-500">
+                          <p className="flex items-center text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300">
                             {bill.customerName}
                           </p>
-                          <p className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0 sm:ml-6">
+                          <p className="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0 sm:ml-6 transition-colors duration-300">
                             {bill.items} items
                           </p>
                         </div>
-                        <div className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
+                        <div className="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0 transition-colors duration-300">
                           <p>{formatCurrency(bill.total)}</p>
                         </div>
                       </div>

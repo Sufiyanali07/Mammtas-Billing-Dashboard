@@ -13,12 +13,12 @@ import Receipts from "./pages/Receipts";
 import Products from "./pages/Products";
 import Navbar from "./components/Navbar";
 import "./App.css";
-import { ThemeProvider } from "./context/ThemeContext";
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
 
 // Public Receipt component that doesn't include Navbar
 const PublicReceiptWrapper = () => {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-800 dark:text-gray-100">
       <main className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <Routes>
           <Route path="/:billId" element={<Receipt />} />
@@ -46,7 +46,7 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-gray-100 dark:bg-gray-800 dark:text-gray-100">
           <Toaster position="top-right" />
           <Navbar />
           <main className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
